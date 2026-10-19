@@ -1,0 +1,2 @@
+-rw-r--r--@ 1 asminmetin  staff    10M Oct 19 23:15 module-01/telemetry.db
+172800
