@@ -1,0 +1,28 @@
+
+-- SQL: create a table and add rows
+CREATE TABLE reading(machine TEXT, vib REAL);
+INSERT INTO reading VALUES ('cnc-01', 1.2), ('cnc-02', 2.4), ('cnc-01', 0.9);
+
+-- what tables exist, and how was this one made?
+.tables
+reading
+.schema reading
+CREATE TABLE reading(machine TEXT, vib REAL);
+
+-- readable columns with a header
+.mode column
+.headers on
+SELECT machine, max(vib) AS peak FROM reading GROUP BY machine;
+machine  peak
+-------  ----
+cnc-01   1.2 
+cnc-02   2.4 
+
+-- same query, now timed
+.timer on
+SELECT machine, max(vib) AS peak FROM reading GROUP BY machine;
+machine  peak
+-------  ----
+cnc-01   1.2 
+cnc-02   2.4 
+Run Time: real 0.000 user 0.000020 sys 0.000014
