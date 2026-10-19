@@ -1,0 +1,14 @@
+# local data and secrets stay out of the repository
+.venv/
+*.db
+*.db-journal
+*.duckdb
+*.parquet
+.env
+_pycache_/
+
+# generated data
+module-01/telemetry.csv
+
+# OS clutter
+.DS_Store
