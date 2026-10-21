@@ -8,7 +8,7 @@
 _pycache_/
 
 # generated data
-module-01/telemetry.csv
+telemetry.csv
 
 # OS clutter
 .DS_Store
