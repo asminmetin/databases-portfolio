@@ -12,6 +12,8 @@ Load real rows into SQLite and query them from Python using bound parameters.
 Take a first LLM-generated query, run it, and begin the habit that defines this course: verify before you trust.
 + This is my first database course, so I want to see for myself why embedded databases like SQLite and DuckDB are fine for most local projects and don’t need a server.
 
+one sentence: which dot-command you found most useful, and why.
++ I liked .dump command most because it is always good to have a back up in case something goes wrong.
 
 ## Reflection 1
 [Reflection 1](/Reflections/ref01.md)
