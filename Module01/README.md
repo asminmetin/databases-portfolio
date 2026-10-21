@@ -17,3 +17,14 @@ one sentence: which dot-command you found most useful, and why.
 
 ## Reflection 1
 [Reflection 1](/Reflections/ref01.md)
+
+
+### Task 6 — size and cloud cost
+
+- `telemetry.db`: 10,526,720 bytes, 172,800 rows → ~61 bytes/row
+- 86,400 rows/day → ~5.3 MB/day → ~1.9 GB/year
+
+Cloud cost: At about 1.9 GB per year, this dataset fits on any shop-floor PC; in the cloud, Wittkamp would pay a recurring monthly bill for a database server, backups and someone to maintain them, all for one dashboard and one weekly report, while the embedded SQLite file adds no infrastructure cost at all.
+
+
+
