@@ -1,0 +1,27 @@
+DROP INDEX IF EXISTS ix_job_tech;
+
+-- BEFORE the index
+EXPLAIN QUERY PLAN SELECT * FROM maint_job WHERE technician = 'Beier';
+QUERY PLAN
+`--SCAN maint_job
+EXPLAIN QUERY PLAN SELECT * FROM machine WHERE machine_name = 'cnc-02';
+QUERY PLAN
+`--SCAN machine
+EXPLAIN QUERY PLAN SELECT * FROM maint_job WHERE technician LIKE '%ei%';
+QUERY PLAN
+`--SCAN maint_job
+
+CREATE INDEX ix_job_tech ON maint_job(technician);
+
+-- AFTER the index
+EXPLAIN QUERY PLAN SELECT * FROM maint_job WHERE technician = 'Beier';
+QUERY PLAN
+`--SEARCH maint_job USING INDEX ix_job_tech (technician=?)
+EXPLAIN QUERY PLAN SELECT * FROM machine WHERE machine_name = 'cnc-02';
+QUERY PLAN
+`--SCAN machine
+EXPLAIN QUERY PLAN SELECT * FROM maint_job WHERE technician LIKE '%ei%';
+QUERY PLAN
+`--SCAN maint_job
+
+-- BREAK IT: my own WHERE clauses that defeat the index
