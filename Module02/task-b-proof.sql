@@ -1,0 +1,38 @@
+-- Task B proof: sketch 3 (work orders <-> parts, m:n)
+-- SQL drafted with Claude from my sketch 3; run and checked by me.
+PRAGMA foreign_keys = ON;
+.headers on
+.mode column
+
+CREATE TABLE work_order (
+    work_order_id INTEGER PRIMARY KEY,
+    order_date    TEXT NOT NULL
+);
+
+CREATE TABLE part (
+    part_id   INTEGER PRIMARY KEY,
+    part_name TEXT NOT NULL
+);
+
+CREATE TABLE work_order_part (
+    work_order_id INTEGER NOT NULL REFERENCES work_order(work_order_id),
+    part_id       INTEGER NOT NULL REFERENCES part(part_id),
+    quantity      INTEGER NOT NULL DEFAULT 1,
+    PRIMARY KEY (work_order_id, part_id)
+);
+
+-- two rows each
+INSERT INTO work_order VALUES (1, '2026-01-08'), (2, '2026-02-14');
+INSERT INTO part VALUES (1001, 'Ball bearing 6203'), (1002, 'Spindle belt');
+
+-- order 1 uses both parts, order 2 uses one of them
+INSERT INTO work_order_part VALUES (1, 1001, 2), (1, 1002, 1), (2, 1001, 1);
+
+-- one order -> many parts
+SELECT work_order_id, COUNT(*) AS n_parts FROM work_order_part GROUP BY work_order_id;
+
+-- one part -> many orders
+SELECT part_id, COUNT(*) AS n_orders FROM work_order_part GROUP BY part_id;
+
+-- "an order can list a given part only once": this must fail
+INSERT INTO work_order_part VALUES (1, 1001, 5);

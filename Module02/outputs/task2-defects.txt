@@ -1,0 +1,52 @@
+# Defect 1
+
+job_id | machine_name
+3      | cnc-05
+
+- Job 3 cannot be linked to a known machine, so its maintenance history and site cannot be trusted.
+
+
+# Defect 2
+
+part_no | copies
+P-1003  | 2
+
+- Reports and joins can count the same part twice, producing incorrect stock or cost totals.
+
+
+# Defect 3
+
+part_no | unit_price
+P-1001  | 12.50
+
+**Numeric comparison for contrast** 
+SELECT part_no, unit_price
+FROM part
+WHERE CAST(unit_price AS REAL) < 15;
+
+- Result: 
+part_no | unit_price
+P-1001  | 12.50
+P-1003  | 9.90
+P-1003  | 9.90
+
+- Text ordering excludes the 9.90 parts from a “prices below 15” query, which can lead to incorrect purchasing or invoice calculations.
+
+# Defect 4
+
+machine_name | installed
+RANDOM-NAME  | unknown
+
+- Date-based warranty, maintenance, and machine-age reports cannot correctly process a value such as unknown.
+
+
+# Defect 5
+
+job_id | description
+2      | Coolant filter
+2      | Coolant filter
+3      | Ball bearing 6203
+
+- Job 1 disappears from the join because P-1001,P-1002 does not equal any single part_no; the duplicated P-1003 row also makes job 2 appear twice.
+Summary
+
