@@ -1,5 +1,17 @@
 # Module 03 — SQL Query Plans, Indexes and Security
 
+# Learning Goals
+
+This module gives you the opportunity to explore complex querying and query optimization and achieve competency in writing, profiling, and securing SQL.
+
+By the end of this module, you can:
+
+Build complex DQL queries: joins, aggregation with GROUP BY/HAVING, subqueries, and window functions.
+Read EXPLAIN QUERY PLAN as primary evidence: say what the engine will do for a given query, tell a SCAN from a SEARCH, and a table lookup from a covering index.
+Benchmark the effect of an index and explain when the planner ignores one.
+Generate a query with an LLM, then verify it: correctness, performance, and edge cases.
+Prevent SQL injection with bound parameters and demonstrate why string concatenation is exploitable.
+
 ## Overview
 
 In this module, I worked on understanding how SQL queries are represented, executed and improved. I used relational algebra, SQLite query plans, index benchmarks and a SQL injection demonstration.
